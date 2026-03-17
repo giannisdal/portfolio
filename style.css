@@ -1,0 +1,240 @@
+/* ── Reset & Base ── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #1e1e2e;
+    --terminal-bg: #11111b;
+    --title-bar: #181825;
+    --text: #cdd6f4;
+    --green: #a6e3a1;
+    --blue: #89b4fa;
+    --mauve: #cba6f7;
+    --yellow: #f9e2af;
+    --red: #f38ba8;
+    --peach: #fab387;
+    --teal: #94e2d5;
+    --subtext: #a6adc8;
+    --surface: #313244;
+    --btn-close: #ed6a5e;
+    --btn-minimize: #f5bf4f;
+    --btn-maximize: #62c555;
+}
+
+html, body {
+    height: 100%;
+    background: var(--bg);
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ── Terminal Window ── */
+.terminal-window {
+    width: 90vw;
+    max-width: 850px;
+    height: 80vh;
+    max-height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 120px rgba(137, 180, 250, 0.06);
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Title Bar ── */
+.title-bar {
+    background: var(--title-bar);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid var(--surface);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.btn.close    { background: var(--btn-close); }
+.btn.minimize { background: var(--btn-minimize); }
+.btn.maximize { background: var(--btn-maximize); }
+
+.title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    color: var(--subtext);
+    font-weight: 400;
+}
+
+/* ── Terminal Body ── */
+.terminal-body {
+    background: var(--terminal-bg);
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    cursor: text;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: var(--surface);
+    border-radius: 3px;
+}
+
+/* ── Output ── */
+#output {
+    flex: 1;
+}
+
+.output-line {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.output-cmd {
+    margin-top: 8px;
+}
+
+/* ── Prompt ── */
+.prompt {
+    color: var(--green);
+    font-weight: 700;
+}
+
+.prompt .colon { color: var(--text); }
+.prompt .tilde { color: var(--blue); }
+.prompt .dollar { color: var(--text); margin-left: 2px; }
+
+/* ── Input ── */
+.input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+#command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: inherit;
+    caret-color: var(--green);
+    line-height: 1.7;
+}
+
+/* ── Colored output classes ── */
+.color-green  { color: var(--green); }
+.color-blue   { color: var(--blue); }
+.color-mauve  { color: var(--mauve); }
+.color-yellow { color: var(--yellow); }
+.color-red    { color: var(--red); }
+.color-peach  { color: var(--peach); }
+.color-teal   { color: var(--teal); }
+.color-sub    { color: var(--subtext); }
+.bold         { font-weight: 700; }
+
+/* ── ASCII art ── */
+.ascii-art {
+    color: var(--green);
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+/* ── Section headers ── */
+.section-header {
+    color: var(--mauve);
+    font-weight: 700;
+    border-bottom: 1px solid var(--surface);
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+/* ── Typing animation for welcome message ── */
+.typing-line {
+    opacity: 0;
+    animation: typeFade 0.3s ease forwards;
+}
+
+@keyframes typeFade {
+    to { opacity: 1; }
+}
+
+/* ── Links ── */
+.terminal-link {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.terminal-link:hover {
+    color: var(--teal);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .terminal-window {
+        width: 98vw;
+        height: 90vh;
+        max-height: none;
+        border-radius: 0;
+    }
+
+    .terminal-body {
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .ascii-art {
+        font-size: 8px;
+    }
+
+    .title {
+        font-size: 11px;
+    }
+}
+

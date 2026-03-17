@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>giannisdal@portfolio: ~</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-window">
+        <!-- macOS title bar -->
+        <div class="title-bar">
+            <div class="buttons">
+                <span class="btn close"></span>
+                <span class="btn minimize"></span>
+                <span class="btn maximize"></span>
+            </div>
+            <div class="title">giannisdal@portfolio: ~</div>
+        </div>
+
+        <!-- Terminal body -->
+        <div class="terminal-body" id="terminal">
+            <div id="output"></div>
+            <div class="input-line">
+                <span class="prompt">visitor@portfolio<span class="colon">:</span><span class="tilde">~</span><span class="dollar">$</span></span>
+                <input type="text" id="command-input" autofocus autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+            </div>
+        </div>
+    </div>
+
+    <script src="terminal.js"></script>
+</body>
+</html>
