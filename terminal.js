@@ -303,3 +303,18 @@ function autocomplete(partial) {
 showWelcome();
 input.focus();
 
+// ── iOS keyboard fix: scroll input into view when focused ──
+input.addEventListener('focus', () => {
+    setTimeout(() => {
+        input.scrollIntoView({ block: 'end', behavior: 'smooth' });
+        scrollToBottom();
+    }, 300);
+});
+
+// ── Prevent iOS bounce / pull-to-refresh ──
+document.body.addEventListener('touchmove', (e) => {
+    if (!terminal.contains(e.target)) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
