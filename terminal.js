@@ -209,7 +209,7 @@ function appendOutput(html) {
 function appendCommandEcho(cmd) {
     const div = document.createElement('div');
     div.classList.add('output-line', 'output-cmd');
-    div.innerHTML = `<span class="prompt">visitor@portfolio<span class="colon">:</span><span class="tilde">~</span><span class="dollar">$</span></span> ${escapeHtml(cmd)}`;
+    div.innerHTML = `<span class="prompt"><span class="prompt-full">visitor@portfolio</span><span class="prompt-short">~</span><span class="colon">:</span><span class="tilde">~</span><span class="dollar">$</span></span> ${escapeHtml(cmd)}`;
     output.appendChild(div);
 }
 
